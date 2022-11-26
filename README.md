@@ -1,4 +1,4 @@
-This repo is following the article "Domain Adaptation with Coupled Subspaces"
+This repo is following the article "On Deep Multi-view Representation Learning"
 
 
 
