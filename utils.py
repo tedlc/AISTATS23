@@ -280,10 +280,6 @@ def load_mnist_data(n_train, batch_size=50, val_batch_size=10, noise_std=0.1):
                 #                  std=[0.229, 0.224, 0.225])
                 ])
     mnist_image = MNIST(root="",transform=transform,download=True)
-    N=len(mnist_image)
-    mnist_loader= get_dataloaders(
-            mnist_image, batch_size=64,
-        )
 
     our_dataset=[]
     labels=[]
@@ -296,7 +292,7 @@ def load_mnist_data(n_train, batch_size=50, val_batch_size=10, noise_std=0.1):
         data={'views':None,'label':None,'index':None}
         data['label']=i[1]
         data['index']=index
-        data['views']=(i[0],add_noise(i[0]))
+        data['views']=(add_noise(i[0]),i[0])
         our_dataset.append(data)
         labels.append(i[1])
 
@@ -316,3 +312,4 @@ def load_mnist_data(n_train, batch_size=50, val_batch_size=10, noise_std=0.1):
     val_labels=np.array(labels[(n_train//batch_size)*batch_size:])
     
     return train_loader, val_loader, train_labels, val_labels
+
